@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <RootNamespace>PetStore_xunit_restsharp</RootNamespace>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentAssertions">
+      <Version>5.10.3</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="2.2.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="NSubstitute">
+      <Version>4.2.1</Version>
+    </PackageReference>
+    <PackageReference Include="RestSharp" Version="106.10.2-alpha.0.8" />
+    <PackageReference Include="xunit">
+      <Version>2.4.1</Version>
+    </PackageReference>
+    <PackageReference Include="xunit.runner.console" Version="2.4.1" />
+    <PackageReference Include="xunit.runner.visualstudio">
+      <Version>2.4.1</Version>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="StoreTests\" />
+  </ItemGroup>
+
+</Project>
