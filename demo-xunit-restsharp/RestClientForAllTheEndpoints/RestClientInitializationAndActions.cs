@@ -94,6 +94,56 @@ namespace PetStore.EndToEndTests.RestClientNamespace
 
 
 
+        public IRestResponse remove_the_pet_from_the_store(long uniqueIdentifier)
+        {
+            var request = new RestRequest(petRoute + "/" + uniqueIdentifier, Method.DELETE);
+
+            System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12 | System.Net.SecurityProtocolType.Tls11 | System.Net.SecurityProtocolType.Tls11;
+            this.client.RemoteCertificateValidationCallback = (sender, certificate, chain, sslPolicyErrors) => true;
+            var response = client.Execute(request);
+
+            return response;
+        }
+
+
+
+
+        public IRestResponse change_the_availability_status_for_the_pet_in_the_store(long uniqueIdentifier, string newAvailabilityStatus)
+        {
+            var request = new RestRequest(petRoute, Method.PUT);
+
+
+
+            var petToBeUpdated = new AddPetToStoreRequestModel();
+            petToBeUpdated.id = uniqueIdentifier;
+            petToBeUpdated.name = "read the eplanation";
+            /*
+             * EXPLANATION
+             * since the name parameter is mandatory, I would retrieve here the name of the pet by querying the endpoint /pet/{petId}
+             */
+            petToBeUpdated.status = newAvailabilityStatus;
+            request.AddParameter("application/json; charset=utf-8", JsonConvert.SerializeObject(petToBeUpdated), ParameterType.RequestBody);
+
+            System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12 | System.Net.SecurityProtocolType.Tls11 | System.Net.SecurityProtocolType.Tls11;
+            this.client.RemoteCertificateValidationCallback = (sender, certificate, chain, sslPolicyErrors) => true;
+            var response = client.Execute(request);
+
+            return response;
+        }
+
+
+
+        public IRestResponse retrieve_the_pet_by(long uniqueIdentifier)
+        {
+            var request = new RestRequest(petRoute + "/" + uniqueIdentifier, Method.GET);
+
+            System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12 | System.Net.SecurityProtocolType.Tls11 | System.Net.SecurityProtocolType.Tls11;
+            this.client.RemoteCertificateValidationCallback = (sender, certificate, chain, sslPolicyErrors) => true;
+            var response = client.Execute(request);
+
+            return response;
+        }
+
 
 
     }

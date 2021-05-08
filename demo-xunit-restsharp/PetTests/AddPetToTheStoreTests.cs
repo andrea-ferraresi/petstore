@@ -51,9 +51,12 @@ namespace PetStore.EndToEndTests.GetPetByStatus
                 }
       }
       petSuccessfullyAdded.Should().BeTrue();
+      //trying to clean up after myself
+      response = restClient.remove_the_pet_from_the_store(uniqueIdentifierForThePet);
+      response.StatusCode.Should().Be(HttpStatusCode.OK);
 
 
-    }
+     }
 
 
 
