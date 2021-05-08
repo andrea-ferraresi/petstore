@@ -17,9 +17,9 @@ namespace PetStore.EndToEndTests.GetPetByStatus
 
     public static IEnumerable<object[]> availabilityStatus()
     {
-        yield return new object[] { petStatusAvailable };
-        yield return new object[] { petStatusToBeVerified };
-        yield return new object[] { petStatusToBeVerified };
+        yield return new object[] { petStatusListAvailable };
+        yield return new object[] { petStatusListToBeVerified };
+        yield return new object[] { petStatusListSold };
     }
 
 
@@ -30,7 +30,7 @@ namespace PetStore.EndToEndTests.GetPetByStatus
     {
       var restClient = new RestClientInitializationAndActions();
 
-      var response = restClient.get_pet_with_availability_status(currentAvailabilityStatus);      
+      var response = restClient.get_pet_with_availability_statuses(currentAvailabilityStatus);      
 
       response.StatusCode.Should().Be(HttpStatusCode.OK);            
       JArray listOfPets = JArray.Parse(response.Content);     
